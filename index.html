@@ -1,814 +1,167 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wai Pops - Sip. Refresh. Repeat.</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: #333;
-        }
-
-        /* Navigation */
-        nav {
-            background: linear-gradient(135deg, #FF8C00 0%, #FF6B35 100%);
-            padding: 1rem 2rem;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-
-        nav ul {
-            list-style: none;
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            flex-wrap: wrap;
-        }
-
-        nav a {
-            color: white;
-            text-decoration: none;
-            font-weight: 600;
-            transition: opacity 0.3s;
-        }
-
-        nav a:hover {
-            opacity: 0.8;
-        }
-
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(135deg, #FF8C00 0%, #FF6B35 25%, #87CEEB 50%, #00CED1 75%, #FF69B4 100%);
-            background-size: 400% 400%;
-            animation: gradientShift 15s ease infinite;
-            color: white;
-            padding: 4rem 2rem;
-            text-align: center;
-            min-height: 500px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
-
-        @keyframes gradientShift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        .hero h1 {
-            font-size: 4rem;
-            margin-bottom: 1rem;
-            text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
-            animation: slideDown 1s ease-out;
-        }
-
-        @keyframes slideDown {
-            from {
-                opacity: 0;
-                transform: translateY(-30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .hero-subtitle {
-            font-size: 1.8rem;
-            margin-bottom: 2rem;
-            text-shadow: 1px 1px 4px rgba(0,0,0,0.3);
-        }
-
-        .tagline {
-            font-size: 1.3rem;
-            font-weight: bold;
-            margin-top: 1rem;
-            letter-spacing: 2px;
-        }
-
-        /* Container */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        /* Section Styling */
-        section {
-            padding: 4rem 2rem;
-        }
-
-        section h2 {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 3rem;
-            color: #FF8C00;
-        }
-
-        /* About Section */
-        .about {
-            background: #f9f9f9;
-        }
-
-        .about-content {
-            max-width: 800px;
-            margin: 0 auto;
-            text-align: center;
-            font-size: 1.1rem;
-            line-height: 1.8;
-        }
-
-        /* Products Section */
-        .products {
-            background: white;
-        }
-
-        .products-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .product-card {
-            background: white;
-            border-radius: 15px;
-            padding: 2rem;
-            text-align: center;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-            transition: transform 0.3s, box-shadow 0.3s;
-            overflow: hidden;
-        }
-
-        .product-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-        }
-
-        .product-card img {
-            transition: transform 0.3s ease;
-        }
-
-        .product-card:hover img {
-            transform: scale(1.05);
-        }
-
-        .product-card h3 {
-            font-size: 1.8rem;
-            margin-bottom: 1rem;
-            color: #333;
-        }
-
-        .product-icon {
-            font-size: 4rem;
-            margin-bottom: 1rem;
-        }
-
-        .product-description {
-            color: #666;
-            margin: 1rem 0;
-            font-size: 1rem;
-        }
-
-        .product-feature {
-            background: #f0f0f0;
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            display: inline-block;
-            margin: 0.3rem;
-            font-size: 0.9rem;
-            color: #FF8C00;
-        }
-
-        /* Why Choose Us */
-        .why-us {
-            background: linear-gradient(135deg, #FF8C00 0%, #FF6B35 100%);
-            color: white;
-        }
-
-        .why-us h2 {
-            color: white;
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .feature-item {
-            text-align: center;
-            padding: 2rem;
-            background: rgba(255,255,255,0.1);
-            border-radius: 10px;
-            backdrop-filter: blur(10px);
-        }
-
-        .feature-item h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .feature-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-        }
-
-        /* Contact Section */
-        .contact {
-            background: #f9f9f9;
-        }
-
-        .contact-wrapper {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            margin-top: 2rem;
-        }
-
-        .contact-info {
-            padding: 2rem;
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-
-        .contact-info h3 {
-            color: #FF8C00;
-            margin-bottom: 1.5rem;
-            font-size: 1.5rem;
-        }
-
-        .contact-item {
-            margin: 1.5rem 0;
-            padding-bottom: 1.5rem;
-            border-bottom: 1px solid #eee;
-        }
-
-        .contact-item:last-child {
-            border-bottom: none;
-        }
-
-        .contact-label {
-            font-weight: bold;
-            color: #FF8C00;
-            display: block;
-            margin-bottom: 0.5rem;
-        }
-
-        .contact-value {
-            color: #666;
-            font-size: 1rem;
-        }
-
-        /* Contact Form */
-        .contact-form {
-            background: white;
-            padding: 2rem;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            color: #333;
-            font-weight: 600;
-        }
-
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 0.8rem;
-            border: 2px solid #ddd;
-            border-radius: 5px;
-            font-family: inherit;
-            font-size: 1rem;
-            transition: border-color 0.3s;
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: #FF8C00;
-        }
-
-        .form-group textarea {
-            resize: vertical;
-            min-height: 120px;
-        }
-
-        .submit-btn {
-            background: linear-gradient(135deg, #FF8C00 0%, #FF6B35 100%);
-            color: white;
-            padding: 1rem 2rem;
-            border: none;
-            border-radius: 5px;
-            font-size: 1rem;
-            font-weight: bold;
-            cursor: pointer;
-            transition: transform 0.3s, box-shadow 0.3s;
-            width: 100%;
-        }
-
-        .submit-btn:hover {
-            transform: scale(1.02);
-            box-shadow: 0 5px 15px rgba(255,140,0,0.3);
-        }
-
-        /* Footer */
-        footer {
-            background: #333;
-            color: white;
-            text-align: center;
-            padding: 2rem;
-        }
-
-        footer p {
-            margin: 0.5rem 0;
-        }
-
-        .footer-brand {
-            font-size: 1.3rem;
-            font-weight: bold;
-            color: #FF8C00;
-            margin-bottom: 1rem;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-
-            .hero-subtitle {
-                font-size: 1.3rem;
-            }
-
-            section h2 {
-                font-size: 2rem;
-            }
-
-            .contact-wrapper {
-                grid-template-columns: 1fr;
-            }
-
-            nav ul {
-                gap: 1rem;
-                font-size: 0.9rem;
-            }
-        }
-
-        /* Bottle animation */
-        .bottle {
-            display: inline-block;
-            animation: bounce 2s infinite;
-        }
-
-        @keyframes bounce {
-            0%, 100% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-10px);
-            }
-        }
-    </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Wai Pops – Product Template</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Lobster+Two:ital,wght@1,700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#fff3a8;--surface:#fffdf0;--line:#efd957;--text:#1d1a3a;--muted:#675f3a;--accent:#bfefe6;--ink:#1d1a3a;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+:root:not([data-theme="dark"]){--bg:#fff3a8}
+*,*:before,*:after{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:radial-gradient(circle at 90% 0,#ffe45e 0,transparent 42%),var(--bg);color:var(--text);font:16px/1.6 "DM Sans",system-ui,sans-serif;transition:background .5s}
+.script{font-family:"Lobster Two","Brush Script MT",cursive;font-style:italic;font-weight:700}
+header{display:flex;justify-content:space-between;align-items:center;padding:18px clamp(18px,5vw,56px);border-bottom:1px solid var(--line)}
+header a{color:var(--text);text-decoration:none}
+.logo{display:block;line-height:0}.logo img{height:54px;width:auto}
+nav{display:flex;gap:22px;font-size:15px;color:var(--muted)}
+nav a{color:var(--muted)}nav a:hover{color:var(--text)}
+main{max-width:1160px;margin:0 auto;padding:0 clamp(18px,5vw,56px) 64px}
+.hero{padding:56px 0 36px;max-width:640px}
+.hero h1{font-size:clamp(40px,7vw,72px);line-height:1.05;margin:0 0 14px}
+.hero p{color:var(--muted);margin:0;max-width:46ch}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:22px}
+.card{position:relative;display:flex;flex-direction:column;background:var(--surface);border:1px solid var(--line);border-radius:22px;text-decoration:none;color:var(--text);overflow:hidden;transition:transform .25s,border-color .25s}
+.card:hover,.card:focus-visible{transform:translateY(-4px);border-color:var(--c)}
+.card .stage{height:300px;display:grid;place-items:end center;background:radial-gradient(ellipse at 50% 85%,color-mix(in srgb,var(--c) 45%,transparent),transparent 70%)}
+.card img{height:270px;width:auto;object-fit:contain;filter:drop-shadow(0 14px 16px rgba(22,26,58,.22))}
+.card .info{padding:18px 22px 22px;border-top:3px solid var(--c)}
+.card h3{margin:0;font-size:28px;line-height:1.1}
+.card .meta{display:flex;justify-content:space-between;color:var(--muted);font-size:14px;margin-top:6px}
+a:focus-visible,button:focus-visible{outline:3px solid var(--text);outline-offset:3px}
+/* detail */
+.back{display:inline-block;margin:26px 0 8px;color:var(--muted);text-decoration:none}
+.back:hover{color:var(--text)}
+.detail{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(24px,5vw,64px);align-items:start;padding-top:12px}
+.detail .stage{position:sticky;top:20px;border-radius:28px;display:grid;place-items:end center;padding:36px 0 0;min-height:480px;background:radial-gradient(ellipse at 50% 90%,color-mix(in srgb,var(--c) 55%,transparent),var(--surface) 72%);border:1px solid var(--line)}
+.detail .stage img{height:440px;width:auto;filter:drop-shadow(0 18px 20px rgba(22,26,58,.25))}
+.detail h1{font-size:clamp(44px,6vw,76px);line-height:1;margin:0;color:var(--text);text-decoration:underline;text-decoration-color:var(--c);text-decoration-thickness:6px;text-underline-offset:10px}
+.size{color:var(--muted);margin:6px 0 22px}
+.tabs{display:flex;gap:6px;border-bottom:1px solid var(--line);margin-bottom:22px;overflow-x:auto}
+.tabs button{background:none;border:0;color:var(--muted);font:500 16px "DM Sans",sans-serif;padding:12px 16px;cursor:pointer;border-bottom:3px solid transparent;white-space:nowrap}
+.tabs button[aria-selected=true]{color:var(--text);border-color:var(--c)}
+.panel[hidden]{display:none}
+.panel h2{font-size:18px;margin:0 0 8px}
+.panel p{margin:0 0 18px;max-width:62ch}
+.labelbox{overflow-x:auto;border-radius:14px;border:1px solid var(--line);background:#fff}
+.labelbox img{display:block;min-width:720px;width:100%}
+.hint{color:var(--muted);font-size:14px;margin-top:8px}
+table{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}
+th,td{padding:9px 10px;border-bottom:1px solid var(--line);text-align:right}
+th:first-child,td:first-child{text-align:left}
+th{color:var(--muted);font-weight:500;font-size:14px}
+.facts{display:grid;grid-template-columns:auto 1fr;gap:8px 22px;margin:0}
+.facts dt{color:var(--muted)}.facts dd{margin:0}
+.pager{display:flex;justify-content:space-between;margin-top:44px;gap:16px}
+.pager a{flex:1;padding:16px 20px;border:1px solid var(--line);border-radius:16px;color:var(--text);text-decoration:none;background:var(--surface)}
+.pager a:hover{border-color:var(--accent)}
+.pager small{display:block;color:var(--muted)}
+.contact-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:22px}.cbox{background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:28px}.cbox h2{font-size:20px;margin:0 0 16px}.cd{margin:0}.cd dt{color:var(--muted);font-size:14px;margin-top:16px;padding-top:16px;border-top:1px solid var(--line)}.cd dt:first-child{border:0;margin-top:0;padding-top:0}.cd dd{margin:2px 0 0}.cd a{color:var(--text)}.cbox label{display:block;font-weight:500;margin-top:16px}.cbox input,.cbox textarea{width:100%;margin-top:6px;padding:12px;border:1px solid var(--line);border-radius:12px;font:inherit;color:var(--text);background:var(--bg)}.cbox textarea{min-height:120px;resize:vertical}.cbox button{margin-top:20px;width:100%;padding:14px;border:0;border-radius:12px;background:var(--text);color:#fff;font:700 16px "DM Sans",sans-serif;cursor:pointer}#cs{color:var(--muted);font-size:14px;margin:12px 0 0}
+#fx{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}header,main,footer{position:relative;z-index:1}body:before{content:"";position:fixed;top:-130px;right:-130px;width:360px;height:360px;border-radius:50%;background:radial-gradient(circle,#ffcf1a 0,#ffe45e 45%,transparent 70%);animation:sun 6s ease-in-out infinite;pointer-events:none}@keyframes sun{50%{transform:scale(1.12)}}.card img{width:100%;height:100%;object-fit:cover;filter:none;transition:transform .4s}.card:hover img{transform:scale(1.06)}.card .stage{padding:0;place-items:stretch}.detail .stage{place-items:center;padding:20px}.detail .stage img{border-radius:20px;max-width:100%;height:auto;max-height:480px;filter:none}.show{display:grid;grid-template-columns:1.1fr 1fr;gap:32px;align-items:center;padding:36px 0 48px}.show h1{font-size:clamp(44px,7vw,84px);line-height:1;margin:0 0 14px}.show p{max-width:46ch;min-height:3.2em}.bot{display:grid;place-items:center;cursor:pointer;padding:18px;border-radius:32px;background:radial-gradient(ellipse at 50% 80%,color-mix(in srgb,var(--c) 60%,transparent),transparent 72%)}.bot img{max-width:100%;max-height:460px;border-radius:24px;transition:transform .25s;box-shadow:0 18px 30px rgba(29,26,58,.25)}.pills{display:flex;gap:10px;flex-wrap:wrap;margin:18px 0}.pills button{border:2px solid var(--text);background:transparent;color:var(--text);padding:9px 16px;border-radius:99px;font:500 15px "DM Sans",sans-serif;cursor:pointer}.pills button[aria-pressed=true]{background:var(--text);color:#fff}.cta{display:inline-block;background:var(--text);color:#fff;padding:13px 22px;border-radius:99px;text-decoration:none;font-weight:700}@media(max-width:820px){.show{grid-template-columns:1fr}}@media(prefers-reduced-motion:reduce){body:before{animation:none}}
+.card{transition:border-color .2s,box-shadow .2s}.card:hover,.card:focus-visible{transform:none;border-color:var(--c);box-shadow:0 8px 22px rgba(29,26,58,.12)}.card .stage{position:relative;height:auto;aspect-ratio:4/5;background:var(--surface)}.card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 45%;transition:none}.card:hover img{transform:none}.card .info{display:grid;gap:4px}
+.qr{position:fixed;inset:0;z-index:50;display:grid;place-items:center;padding:20px;background:rgba(29,26,58,.62)}.qrbox{position:relative;width:100%;max-width:480px;max-height:100%;overflow:auto;background:var(--surface);border-radius:28px;padding:32px 28px 24px;box-shadow:0 24px 60px rgba(0,0,0,.35);text-align:center}.qrbox h2{font-size:46px;line-height:1;margin:0}.qrbox .tag{color:var(--muted);margin:6px 0 20px}.qrbox .cd{text-align:left;background:var(--bg);border-radius:16px;padding:18px 20px;margin-bottom:20px}.qrbox .cd dt{border:0;padding:0;margin-top:14px;color:var(--text);font-weight:700;font-size:15px}.qrbox .cd dt:first-child{margin-top:0}.qx{position:absolute;top:14px;right:14px;width:38px;height:38px;border-radius:50%;border:0;background:var(--text);color:#fff;font-size:22px;line-height:1;cursor:pointer}.qgo{width:100%;padding:14px;border:0;border-radius:14px;background:var(--text);color:#fff;font:700 16px "DM Sans",sans-serif;cursor:pointer}
+header{background:var(--surface)}.qlogo{height:92px;width:auto}
+footer{border-top:1px solid var(--line);padding:26px clamp(18px,5vw,56px);color:var(--muted);font-size:14px}
+@media(max-width:820px){.detail{grid-template-columns:1fr}.detail .stage{position:static;min-height:380px}.detail .stage img{height:340px}nav{display:none}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav>
-        <ul>
-            <li><a href="#home">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#products">Products</a></li>
-            <li><a href="#why">Why Us</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-    </nav>
-
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div>
-            <h1>🥤 Wai Pops</h1>
-            <p class="hero-subtitle">Taste the Fizz!</p>
-            <p class="tagline">Sip. Refresh. Repeat.</p>
-            <p style="margin-top: 2rem; font-size: 1.2rem;">160ml Mini Bottles • Real Fruit Flavors • Zero Preservatives</p>
-            <img src="WhatsApp_Image_2026-08-21_at_20_17_55__3_.jpeg" alt="Wai Pops Products" style="max-width: 100%; height: auto; margin-top: 3rem; border-radius: 15px; max-height: 300px;">
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section class="about" id="about">
-        <div class="container">
-            <h2>About Wai Pops</h2>
-            <div class="about-content">
-                <p>
-                    Welcome to <strong>Wai Pops</strong>, where refreshment meets innovation! We craft premium sodas in convenient 160ml mini bottles that pack big flavor and maximum fizz. Each sip is a celebration of authentic taste, crafted with real fruit flavors and zero compromises.
-                </p>
-                <p style="margin-top: 1.5rem;">
-                    Whether you're looking for a bold cumin experience, a refreshing berry blast, or classic sparkling water, Wai Pops has the perfect pick-me-up for every moment.
-                </p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Products Section -->
-    <section class="products" id="products">
-        <div class="container">
-            <h2>Our Products</h2>
-            <div class="products-grid">
-                <!-- Jeera Soda -->
-                <div class="product-card">
-                    <img src="WhatsApp_Image_2026-08-21_at_20_17_55__1_.jpeg" alt="Jeera Soda" style="width: 100%; height: 300px; object-fit: cover; border-radius: 10px; margin-bottom: 1rem;">
-                    <h3>Jeera Soda</h3>
-                    <p class="product-description">Bold Cumin Spices</p>
-                    <p style="color: #999; font-size: 0.95rem; margin-bottom: 1rem;">Authentic Indian flavors in a refreshing soda</p>
-                    <div>
-                        <span class="product-feature">Real Cumin</span>
-                        <span class="product-feature">Spiced</span>
-                    </div>
-                    <p style="margin-top: 1rem; font-weight: bold; color: #FF8C00;">160ml PET Bottle</p>
-                </div>
-
-                <!-- Blueberry Soda -->
-                <div class="product-card">
-                    <img src="WhatsApp_Image_2026-08-21_at_20_17_55__2_.jpeg" alt="Blueberry Soda" style="width: 100%; height: 300px; object-fit: cover; border-radius: 10px; margin-bottom: 1rem;">
-                    <h3>Blueberry Soda</h3>
-                    <p class="product-description">Refreshing Berry Blast</p>
-                    <p style="color: #999; font-size: 0.95rem; margin-bottom: 1rem;">Bursting with natural blueberry goodness</p>
-                    <div>
-                        <span class="product-feature">Real Blueberry</span>
-                        <span class="product-feature">Berry Blast</span>
-                    </div>
-                    <p style="margin-top: 1rem; font-weight: bold; color: #FF8C00;">160ml PET Bottle</p>
-                </div>
-
-                <!-- Extra Soda -->
-                <div class="product-card">
-                    <img src="WhatsApp_Image_2026-08-21_at_20_17_55__3_.jpeg" alt="Extra Soda" style="width: 100%; height: 300px; object-fit: cover; border-radius: 10px; margin-bottom: 1rem;">
-                    <h3>Extra Soda</h3>
-                    <p class="product-description">Classic Sparkling Water</p>
-                    <p style="color: #999; font-size: 0.95rem; margin-bottom: 1rem;">Pure refreshment with a citrus twist</p>
-                    <div>
-                        <span class="product-feature">Sparkling</span>
-                        <span class="product-feature">Pure</span>
-                    </div>
-                    <p style="margin-top: 1rem; font-weight: bold; color: #FF8C00;">160ml PET Bottle</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Why Choose Us -->
-    <section class="why-us" id="why">
-        <div class="container">
-            <h2>Why Choose Wai Pops?</h2>
-            <div class="features-grid">
-                <div class="feature-item">
-                    <div class="feature-icon">🍓</div>
-                    <h3>Real Fruit Flavors</h3>
-                    <p>Crafted with authentic fruit extracts for genuine taste</p>
-                </div>
-                <div class="feature-item">
-                    <div class="feature-icon">✨</div>
-                    <h3>Zero Preservatives</h3>
-                    <p>Pure, natural, and free from artificial additives</p>
-                </div>
-                <div class="feature-item">
-                    <div class="feature-icon">🎯</div>
-                    <h3>Mini Pocket-Sized</h3>
-                    <p>160ml bottles perfect for on-the-go refreshment</p>
-                </div>
-                <div class="feature-item">
-                    <div class="feature-icon">💪</div>
-                    <h3>Big Fizz</h3>
-                    <p>Maximum carbonation for that perfect sparkling experience</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section class="contact" id="contact">
-        <div class="container">
-            <h2>Get In Touch</h2>
-            <div class="contact-wrapper">
-                <!-- Contact Info -->
-                <div class="contact-info">
-                    <h3>Contact Details</h3>
-                    
-                    <div class="contact-item">
-                        <span class="contact-label">📞 Phone</span>
-                        <span class="contact-value">+91 9921199265</span>
-                    </div>
-
-                    <div class="contact-item">
-                        <span class="contact-label">📧 Email</span>
-                        <span class="contact-value">abajillp@gmail.com</span>
-                    </div>
-
-                    <div class="contact-item">
-                        <span class="contact-label">🏢 Company</span>
-                        <span class="contact-value">ABAJI FOOD AND BEVERAGES LLP</span>
-                    </div>
-
-                    <div class="contact-item">
-                        <span class="contact-label">📍 Location</span>
-                        <span class="contact-value">Pt no. 76, Saptashrungi Layout, Kanhalgaon, Kharsoli Road, Nagpur, Maharashtra 440034</span>
-                    </div>
-
-                </div>
-
-                <!-- Contact Form -->
-                <div class="contact-form">
-                    <h3 style="color: #FF8C00; margin-bottom: 1.5rem;">Send us a Message</h3>
-                    <form id="contactForm">
-                        <div class="form-group">
-                            <label for="name">Your Name *</label>
-                            <input type="text" id="name" name="name" required>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="email">Email Address *</label>
-                            <input type="email" id="email" name="email" required>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="phone">Phone Number</label>
-                            <input type="tel" id="phone" name="phone">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="message">Message *</label>
-                            <textarea id="message" name="message" required></textarea>
-                        </div>
-
-                        <button type="submit" class="submit-btn">Send Message</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-brand">🥤 Wai Pops</div>
-            <p><strong>Sip. Refresh. Repeat.</strong></p>
-            <p>Taste the Fizz! | 160ml Mini Bottles | Real Fruit Flavors | Zero Preservatives</p>
-            
-            <!-- QR Code Section -->
-            <div style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid #555;">
-                <p style="margin-bottom: 1rem; font-size: 0.95rem;">Scan to Visit Website:</p>
-                <div id="qrCodeContainer" style="display: inline-block; padding: 1rem; background: white; border-radius: 10px;"></div>
-            </div>
-            
-            <p style="margin-top: 1.5rem; font-size: 0.9rem; color: #999;">
-                © 2026 ABAJI FOOD AND BEVERAGES LLP. All rights reserved. 
-            </p>
-        </div>
-    </footer>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-    
-    <script>
-        // QR Code Detection & Popup System
-        function checkIfAccessedViaQR() {
-            // Check URL parameters for QR flag
-            const urlParams = new URLSearchParams(window.location.search);
-            const viaQR = urlParams.get('qr') === 'true' || sessionStorage.getItem('accessedViaQR');
-            
-            // Also check referrer for QR scanner
-            const referrer = document.referrer;
-            const isQRAccess = viaQR || 
-                              referrer.includes('qr') || 
-                              referrer.includes('scanner') ||
-                              sessionStorage.getItem('wasViaQR');
-            
-            if (isQRAccess) {
-                sessionStorage.setItem('accessedViaQR', 'true');
-                showCompanyDetailsPopup();
-            }
-        }
-
-        function showCompanyDetailsPopup() {
-            // Create popup overlay
-            const overlay = document.createElement('div');
-            overlay.id = 'popupOverlay';
-            overlay.style.cssText = `
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                background: rgba(0, 0, 0, 0.7);
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                z-index: 1000;
-                animation: fadeIn 0.3s ease;
-            `;
-
-            // Create popup modal
-            const modal = document.createElement('div');
-            modal.id = 'companyPopup';
-            modal.style.cssText = `
-                background: white;
-                border-radius: 20px;
-                padding: 2.5rem;
-                max-width: 500px;
-                width: 90%;
-                box-shadow: 0 10px 40px rgba(0,0,0,0.3);
-                animation: slideUp 0.4s ease;
-                position: relative;
-            `;
-
-            modal.innerHTML = `
-                <button class="close-popup" onclick="closePopup()" style="
-                    position: absolute;
-                    top: 1rem;
-                    right: 1rem;
-                    background: #FF8C00;
-                    color: white;
-                    border: none;
-                    width: 40px;
-                    height: 40px;
-                    border-radius: 50%;
-                    font-size: 1.5rem;
-                    cursor: pointer;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    transition: transform 0.3s;
-                ">×</button>
-
-                <div style="text-align: center; margin-bottom: 2rem;">
-                    <h2 style="color: #FF8C00; margin-bottom: 0.5rem; font-size: 2rem;">🥤 Wai Pops</h2>
-                    <p style="color: #666; font-size: 0.95rem;">Sip. Refresh. Repeat.</p>
-                </div>
-
-                <div style="background: #f5f5f5; padding: 1.5rem; border-radius: 10px; margin-bottom: 1.5rem;">
-                    <div style="margin-bottom: 1.2rem;">
-                        <label style="color: #FF8C00; font-weight: bold; display: block; margin-bottom: 0.3rem;">Company Name</label>
-                        <p style="color: #333; margin: 0;">ABAJI FOOD AND BEVERAGES LLP</p>
-                    </div>
-
-                   
-
-                    <div style="margin-bottom: 1.2rem;">
-                        <label style="color: #FF8C00; font-weight: bold; display: block; margin-bottom: 0.3rem;">FSSAI Number</label>
-                        <p style="color: #333; margin: 0; font-family: monospace; font-size: 1.1rem;">Lic No :11526055000155</p>
-                    </div>
-
-
-                    <div style="margin-bottom: 1.2rem;">
-                        <label style="color: #FF8C00; font-weight: bold; display: block; margin-bottom: 0.3rem;">Phone</label>
-                        <p style="color: #333; margin: 0;"><a href="tel:+91 9921199265" style="color: #FF8C00; text-decoration: none;">9921199265</a></p>
-                    </div>
-
-                    <div style="margin-bottom: 1.2rem;">
-                        <label style="color: #FF8C00; font-weight: bold; display: block; margin-bottom: 0.3rem;">Email</label>
-                        <p style="color: #333; margin: 0;"><a href="mailto:abajillp@gmail.com" style="color: #FF8C00; text-decoration: none;">abajillp@gmail.com</a></p>
-                    </div>
-
-                    <div>
-                        <label style="color: #FF8C00; font-weight: bold; display: block; margin-bottom: 0.3rem;">Manufacturing Unit Location</label>
-                        <p style="color: #333; margin: 0; font-size: 0.9rem;">Pt no. 76, Saptashrungi Layout, Kanhalgaon, Kharsoli Road, Nagpur, Maharashtra 440034</p>
-                    </div>
-                </div>
-
-                <button onclick="closePopup()" style="
-                    width: 100%;
-                    padding: 0.8rem;
-                    background: linear-gradient(135deg, #FF8C00 0%, #FF6B35 100%);
-                    color: white;
-                    border: none;
-                    border-radius: 5px;
-                    font-weight: bold;
-                    cursor: pointer;
-                    font-size: 1rem;
-                    transition: transform 0.3s;
-                " onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'">
-                    Continue to Website
-                </button>
-            `;
-
-            overlay.appendChild(modal);
-            document.body.appendChild(overlay);
-
-            // Add styles for animations
-            const style = document.createElement('style');
-            style.textContent = `
-                @keyframes fadeIn {
-                    from { opacity: 0; }
-                    to { opacity: 1; }
-                }
-                @keyframes slideUp {
-                    from {
-                        opacity: 0;
-                        transform: translateY(50px);
-                    }
-                    to {
-                        opacity: 1;
-                        transform: translateY(0);
-                    }
-                }
-                .close-popup:hover {
-                    transform: scale(1.1) !important;
-                }
-            `;
-            document.head.appendChild(style);
-        }
-
-        function closePopup() {
-            const popup = document.getElementById('popupOverlay');
-            if (popup) {
-                popup.style.animation = 'fadeOut 0.3s ease';
-                setTimeout(() => popup.remove(), 300);
-            }
-        }
-
-        // Generate QR Code on page load
-        function generateQRCode() {
-            const qrContainer = document.getElementById('qrCodeContainer');
-            if (qrContainer) {
-                // Clear previous QR if exists
-                qrContainer.innerHTML = '';
-                
-                // URL with QR flag
-                const qrUrl = 'https://www.waipops.in?qr=true';
-                
-                new QRCode(qrContainer, {
-                    text: qrUrl,
-                    width: 200,
-                    height: 200,
-                    colorDark: '#FF8C00',
-                    colorLight: '#ffffff',
-                    correctLevel: QRCode.CorrectLevel.H
-                });
-            }
-        }
-
-        // Check for QR access on page load
-        window.addEventListener('load', function() {
-            checkIfAccessedViaQR();
-            generateQRCode();
-        });
-
-        // Contact Form Handler
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const phone = document.getElementById('phone').value;
-            const message = document.getElementById('message').value;
-            
-            // Create mailto link
-            const subject = encodeURIComponent('Wai Pops Inquiry from ' + name);
-            const body = encodeURIComponent(
-                'Name: ' + name + '\n' +
-                'Email: ' + email + '\n' +
-                'Phone: ' + phone + '\n\n' +
-                'Message:\n' + message
-            );
-            
-            // Open email client
-            window.location.href = 'mailto:abajillp@gmail.com?subject=' + subject + '&body=' + body;
-            
-            // Reset form
-            this.reset();
-            alert('Opening your email client...');
-        });
-
-        // Smooth scroll for navigation
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                target.scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
-    </script>
+<header><a href="#products" class="logo" aria-label="Wai Pops home"><img id="hl" alt="Wai Pops"></a><nav><a href="#products">Products</a><a href="#about">About</a><a href="#where">Where to buy</a><a href="#contact">Contact</a></nav></header>
+<canvas id="fx" aria-hidden="true"></canvas><main id="app"></main>
+<footer>© Abaji Food and Beverages LLP · Customer care: +91 99211 99265 · abajillp@gmail.com</footer>
+<script>
+/* Edit this list to add or change products */
+var LOGO="images/logo.png";document.getElementById("hl").src=LOGO;
+var P=[
+{id:"club-soda",name:"Club Soda",size:"300 ml",color:"#bfefe6",bottle:"images/club-soda-bottle.jpg",label:"images/club-soda-label.jpg",
+ blurb:"Crisp, clean and sparkling. Made for mixing, or sipping on its own.",
+ ing:"Treated water, carbon dioxide, salt of calcium and potassium.",
+ serving:"Serving size 160 ml · 1.9 servings per pack",
+ nut:[["Energy (kcal)","0","0","0"],["Protein (g)","0","0","0"],["Fat (g)","0","0","0"],["Carbohydrate (g)","0","0","0"],["Sugars (g)","0","0","0"],["Sodium (mg)","13","20.8","1.04%"]]},
+{id:"jeera-soda",name:"Jeera Soda",size:"160 ml",color:"#e8a33d",bottle:"images/jeera-soda-bottle.jpg",label:"images/jeera-soda-label.jpg",
+ blurb:"A spiced, tangy desi classic with roasted cumin and a salty finish.",
+ ing:"Purified carbonated water, salt, preservative (INS-211, 224), food colours (INS-122, 110, 102, 133, 150d), acidity regulator (INS-330, 296, 297), emulsifying and stabilising agent (INS-331, 414, 415, 440), anticaking agent (INS-551), added flavours (natural, nature identical and artificial flavouring (jeera) substances), minerals (INS-341).",
+ serving:"Serving size 160 ml · 1 serving per pack",
+ nut:[["Energy (kcal)","45.72","73.15","3.65%"],["Protein (g)","0","0","0"],["Fat (g)","0","0","0"],["Carbohydrate (g)","11.43","18.28","-"],["Sugars (g)","13.59","21.69","43%"],["Sodium (mg)","125","200","10%"]]},
+{id:"blueberry-soda",name:"Blueberry Soda",size:"160 ml",color:"#5f86ff",bottle:"images/blueberry-soda-bottle.jpg",label:"images/blueberry-soda-label.jpg",
+ blurb:"Bright, fruity and fizzy, with a deep blueberry colour.",
+ ing:"Purified carbonated water, emulsifying and stabilising agent (INS-419, 414, 412), class-II preservative (INS-211), acidity regulator (INS-330), flavours (natural, nature identical and artificial flavouring (blueberry) substances), permitted food colour (INS-133).",
+ serving:"Serving size 160 ml · 1 serving per pack",
+ nut:[["Energy (kcal)","66.8","106.88","5.34%"],["Protein (g)","0","0","0"],["Fat (g)","0","0","0"],["Carbohydrate (g)","16.70","26.72","-"],["Sugars (g)","10.8","17.28","34.56%"]]}
+];
+var COMMON=[["Manufactured and marketed by","Abaji Food and Beverages LLP"],["FSSAI licence no.","11526055000155"],["Storage","Store in a cool, dry place. Keep away from direct sunlight."],["Shelf life","Best before six months from manufacture"],["Pack","Recyclable PET bottle"]];
+var app=document.getElementById("app");
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
+function list(){
+ document.title="Wai Pops – Products";
+ app.innerHTML='<section class="show" id="sh"><div><h1 class="script">Pop something good.</h1><p id="sb"></p><div class="pills">'+P.map(function(p){return '<button type="button">'+esc(p.name)+'</button>'}).join("")+'</div><a class="cta" id="sc" href="#products">See details</a></div><div class="bot" id="bt"><img id="bi" alt=""></div></section><h2 class="script" style="font-size:36px;margin:0 0 18px">Our sodas</h2><div class="grid">'+
+ P.map(function(p){return '<a class="card" href="#'+p.id+'" style="--c:'+p.color+'"><div class="stage"><img src="'+p.bottle+'" alt="'+esc(p.name)+' bottle"></div><div class="info"><h3 class="script">'+esc(p.name)+'</h3><div class="meta"><span>'+esc(p.size)+'</span><span>View details</span></div></div></a>'}).join("")+'</div>';
+ var sh=document.getElementById("sh"),bi=document.getElementById("bi"),sb=document.getElementById("sb"),sc=document.getElementById("sc"),ps=sh.querySelectorAll(".pills button"),bt=document.getElementById("bt");
+ function pick(k){var p=P[k];sh.style.setProperty("--c",p.color);bi.src=p.bottle;bi.alt=p.name+" bottle";sb.textContent=p.name+" · "+p.size+". "+p.blurb;sc.href="#"+p.id;sc.textContent="See "+p.name+" details";ps.forEach(function(x,j){x.setAttribute("aria-pressed",j===k)})}
+ ps.forEach(function(x,j){x.onclick=function(){pick(j)}});pick(0);
+ bt.onmousemove=function(e){var r=bt.getBoundingClientRect();bi.style.transform="rotate("+(((e.clientX-r.left)/r.width-.5)*14)+"deg) translateY(-6px)"};
+ bt.onmouseleave=function(){bi.style.transform=""};
+ bt.onclick=function(e){for(var q=0;q<14;q++)nb(e.clientX+(Math.random()-.5)*70,e.clientY,4+Math.random()*10)};
+ document.documentElement.style.setProperty("--accent","#bfefe6");
+}
+function detail(i){
+ var p=P[i],pr=P[(i+P.length-1)%P.length],nx=P[(i+1)%P.length];
+ document.title="Wai Pops – "+p.name;
+ document.documentElement.style.setProperty("--accent",p.color);
+ var rows=p.nut.map(function(r){return '<tr><td>'+r[0]+'</td><td>'+r[1]+'</td><td>'+r[2]+'</td><td>'+r[3]+'</td></tr>'}).join("");
+ app.innerHTML='<a class="back" href="#products">‹ All products</a><div class="detail" style="--c:'+p.color+'"><div class="stage"><img src="'+p.bottle+'" alt="'+esc(p.name)+' bottle"></div><div>'+
+ '<h1 class="script">'+esc(p.name)+'</h1><p class="size">'+esc(p.size)+' · '+esc(p.blurb)+'</p>'+
+ '<div class="tabs" role="tablist"><button role="tab" aria-selected="true" data-t="0">Ingredients</button><button role="tab" aria-selected="false" data-t="1">Nutrition</button><button role="tab" aria-selected="false" data-t="2">Label</button><button role="tab" aria-selected="false" data-t="3">Product info</button></div>'+
+ '<div class="panel"><h2>Ingredients</h2><p>'+esc(p.ing)+'</p></div>'+
+ '<div class="panel" hidden><h2>Nutritional information (typical values)</h2><p class="hint" style="margin-top:0">'+esc(p.serving)+'</p><table><tr><th></th><th>Per 100 ml</th><th>Per 160 ml</th><th>% RDA*</th></tr>'+rows+'</table><p class="hint">*RDA % values are based on a 2000 kcal energy diet as per ICMR.</p></div>'+
+ '<div class="panel" hidden><h2>Full label</h2><div class="labelbox"><img src="'+p.label+'" alt="Full label artwork for '+esc(p.name)+'"></div><p class="hint">Scroll sideways on small screens.</p></div>'+
+ '<div class="panel" hidden><h2>Product info</h2><dl class="facts">'+COMMON.map(function(r){return '<dt>'+r[0]+'</dt><dd>'+esc(r[1])+'</dd>'}).join("")+'</dl></div>'+
+ '</div></div><div class="pager"><a href="#'+pr.id+'"><small>Previous</small>'+esc(pr.name)+'</a><a href="#'+nx.id+'" style="text-align:right"><small>Next</small>'+esc(nx.name)+'</a></div>';
+ var tabs=app.querySelectorAll(".tabs button"),panels=app.querySelectorAll(".panel");
+ tabs.forEach(function(b){b.onclick=function(){tabs.forEach(function(x,k){var on=x===b;x.setAttribute("aria-selected",on);panels[k].hidden=!on})}});
+}
+function contact(){
+ document.title="Wai Pops – Contact";
+ document.documentElement.style.setProperty("--accent","#5f86ff");
+ app.innerHTML='<a class="back" href="#products">‹ All products</a><section class="hero" style="padding-top:12px"><h1 class="script">Get in touch</h1><p>Questions, orders or distributor enquiries? Call us, email us, or send a message.</p></section><div class="contact-grid"><div class="cbox"><h2>Contact details</h2><dl class="cd"><dt>Phone</dt><dd><a href="tel:+919921199265">+91 9921199265</a></dd><dt>Email</dt><dd><a href="mailto:abajillp@gmail.com">abajillp@gmail.com</a></dd><dt>Company</dt><dd>Abaji Food and Beverages LLP</dd><dt>Location</dt><dd>Pt no. 76, Saptashrungi Layout, Kanhalgaon, Kharsoli Road, Nagpur, Maharashtra 440034</dd></dl></div><div class="cbox"><h2>Send us a message</h2><form id="cf"><label>Your name *<input name="n" required autocomplete="name"></label><label>Email address *<input name="e" type="email" required autocomplete="email"></label><label>Phone number<input name="p" type="tel" autocomplete="tel"></label><label>Message *<textarea name="m" required></textarea></label><button type="submit">Send message</button><p id="cs" aria-live="polite"></p></form></div></div>';
+ document.getElementById("cf").onsubmit=function(ev){ev.preventDefault();var f=ev.target,b="Name: "+f.n.value+"\nEmail: "+f.e.value+"\nPhone: "+f.p.value+"\n\n"+f.m.value;location.href="mailto:abajillp@gmail.com?subject="+encodeURIComponent("Website enquiry from "+f.n.value)+"&body="+encodeURIComponent(b);document.getElementById("cs").textContent="Opening your email app. If nothing opens, write to abajillp@gmail.com."};
+}
+var cv=document.getElementById("fx"),cx=cv.getContext("2d"),B=[];
+function rs(){cv.width=innerWidth;cv.height=innerHeight}rs();addEventListener("resize",rs);
+function nb(x,y,r){B.push({x:x==null?Math.random()*cv.width:x,y:y==null?cv.height+20:y,r:r||6+Math.random()*16,s:.3+Math.random()*.8,w:Math.random()*6.28})}
+function draw(){cx.clearRect(0,0,cv.width,cv.height);B.forEach(function(b){b.y-=b.s;b.w+=.02;b.x+=Math.sin(b.w)*.4;cx.beginPath();cx.arc(b.x,b.y,b.r,0,6.28);cx.fillStyle="rgba(255,255,255,.4)";cx.fill();cx.strokeStyle="rgba(255,255,255,.95)";cx.lineWidth=1.5;cx.stroke();cx.beginPath();cx.arc(b.x-b.r*.3,b.y-b.r*.3,b.r*.2,0,6.28);cx.fillStyle="#fff";cx.fill()});B=B.filter(function(b){return b.y>-40});while(B.length<22)nb();requestAnimationFrame(draw)}
+if(!matchMedia("(prefers-reduced-motion:reduce)").matches){for(var k=0;k<22;k++)nb(null,Math.random()*cv.height);draw()}
+addEventListener("click",function(e){if(e.target.closest("a,button,input,textarea,label,.bot"))return;for(var j=0;j<B.length;j++){var b=B[j];if(Math.hypot(b.x-e.clientX,b.y-e.clientY)<b.r+10){B.splice(j,1);for(var q=0;q<5;q++)nb(b.x+(Math.random()-.5)*20,b.y,3+Math.random()*4);break}}});
+function about(){
+ document.title="Wai Pops – About";
+ document.documentElement.style.setProperty("--accent","#e8a33d");
+ app.innerHTML='<a class="back" href="#products">‹ All products</a><section class="hero" style="padding-top:12px"><h1 class="script">From Nagpur, made to pop.</h1><p>Wai Pops is a range of sodas from Abaji Food and Beverages LLP.</p></section><div class="grid"><div class="cbox"><h2>Three sodas</h2><p>Club Soda in 300 ml, plus Jeera Soda and Blueberry Soda in 160 ml.</p></div><div class="cbox"><h2>Clearly labelled</h2><p>Every bottle lists its ingredients and nutrition, and carries FSSAI licence no. 11526055000155.</p></div><div class="cbox"><h2>Recyclable bottles</h2><p>Our PET bottles are recyclable. Please bin the bottle after use and keep your city clean.</p></div></div>';
+}
+function where(){
+ document.title="Wai Pops – Where to buy";
+ document.documentElement.style.setProperty("--accent","#5f86ff");
+ app.innerHTML='<a class="back" href="#products">‹ All products</a><section class="hero" style="padding-top:12px"><h1 class="script">Find Wai Pops</h1><p>Call us to find the nearest place to buy, or to stock Wai Pops yourself.</p></section><div class="grid"><div class="cbox"><h2>Shops and stores</h2><p>Ask your local shop to stock Wai Pops, or call us and we will point you to one.</p></div><div class="cbox"><h2>Restaurants and cafés</h2><p>Club Soda and flavoured sodas for your menu, mixers and drinks.</p></div><div class="cbox"><h2>Distributors</h2><p>Interested in a distribution partnership? Talk to us about pricing and supply.</p></div></div><p style="margin-top:26px"><a class="cta" href="#contact">Contact us</a></p>';
+}
+function closeQR(){var m=document.getElementById("qr");if(!m)return;m.remove();document.body.style.overflow="";if(location.hash==="#qr")location.hash="#products";try{history.replaceState(null,"",location.pathname+location.hash)}catch(e){}}
+document.addEventListener("keydown",function(e){if(e.key==="Escape")closeQR()});
+function showQR(){
+ if(document.getElementById("qr"))return;
+ var m=document.createElement("div");m.id="qr";m.className="qr";
+ m.innerHTML='<div class="qrbox" role="dialog" aria-modal="true" aria-labelledby="qt"><button class="qx" type="button" aria-label="Close">×</button><h2 id="qt"><img class="qlogo" src="'+LOGO+'" alt="Wai Pops"></h2><p class="tag">Sip. Refresh. Repeat.</p><dl class="cd"><dt>Company name</dt><dd>Abaji Food and Beverages LLP</dd><dt>FSSAI number</dt><dd>Lic No: 11526055000155</dd><dt>Phone</dt><dd><a href="tel:+919921199265">9921199265</a></dd><dt>Email</dt><dd><a href="mailto:abajillp@gmail.com">abajillp@gmail.com</a></dd><dt>Manufacturing unit location</dt><dd>Pt no. 76, Saptashrungi Layout, Kanhalgaon, Kharsoli Road, Nagpur, Maharashtra 440034</dd></dl><button class="qgo" type="button">Continue to website</button></div>';
+ document.body.appendChild(m);document.body.style.overflow="hidden";
+ m.querySelector(".qx").onclick=m.querySelector(".qgo").onclick=closeQR;
+ m.onclick=function(e){if(e.target===m)closeQR()};
+ m.querySelector(".qgo").focus();
+}
+function route(){
+ var h=location.hash.slice(1),i=P.findIndex(function(p){return p.id===h});
+ if(h==="contact")contact();else if(h==="about")about();else if(h==="where")where();else if(h==="qr"){list();showQR()}else if(i<0)list();else detail(i);
+ window.scrollTo(0,0);
+}
+window.addEventListener("hashchange",route);route();
+if(/[?&]qr=true/.test(location.search))showQR();
+</script>
 </body>
 </html>
