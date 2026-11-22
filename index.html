@@ -66,6 +66,9 @@ header{background:var(--surface)}.qlogo{height:92px;width:auto}
 footer{border-top:1px solid var(--line);padding:26px clamp(18px,5vw,56px);color:var(--muted);font-size:14px}
 @media(max-width:820px){.detail{grid-template-columns:1fr}.detail .stage{position:static;min-height:380px}.detail .stage img{height:340px}nav{display:none}}
 @media(prefers-reduced-motion:reduce){*{transition:none!important}}
+@media(max-width:820px){.detail,.show{grid-template-columns:minmax(0,1fr)}.detail>div,.show>div{min-width:0}.tabs{scrollbar-width:none}.tabs::-webkit-scrollbar{display:none}.labelbox img{min-width:640px}.detail h1{font-size:44px}.pager a{padding:14px 16px}}
+.detail .stage{background:none;border:0;border-radius:0;padding:0;min-height:0;display:block}.detail .stage img{display:block;width:auto;max-width:100%;height:auto;max-height:min(75vh,720px);margin:0 auto;border-radius:12px;box-shadow:none}@media(min-width:821px){.detail .stage img{margin:0}}
+.bot{padding:0;background:none}.bot img{border-radius:12px;box-shadow:none;max-height:min(75vh,620px)}@media(max-width:820px){.detail .stage{position:static}.detail .stage img{height:auto}}
 </style>
 </head>
 <body>
